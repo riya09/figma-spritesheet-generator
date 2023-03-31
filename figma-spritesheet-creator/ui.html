@@ -4,17 +4,27 @@
     <title>My Figma Plugin</title>
   </head>
   <body>
-    <h1>Selected items: <span id="count"></span></h1>
+    <form>
+      <label for="width-input">Width:</label>
+      <input type="number" id="width-input" name="width" required>
+
+      <label for="height-input">Height:</label>
+      <input type="number" id="height-input" name="height" required>
+
+      <button type="submit">Resize and group selected items</button>
+    </form>
     <script>
       // Listen for messages from the plugin code
-      parent.postMessage({ pluginMessage: { type: 'countSelected' } }, '*');
+      parent.postMessage({ pluginMessage: { type: 'loaded' } }, '*');
 
-      // Update the count when a message is received
-      onmessage = (event) => {
-        if (event.data.pluginMessage.type === 'selectedCount') {
-          document.getElementById('count').textContent = event.data.pluginMessage.count;
-        }
-      };
+      // Send a message to the plugin code when the form is submitted
+      const form = document.querySelector('form');
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const width = document.getElementById('width-input').value;
+        const height = document.getElementById('height-input').value;
+        parent.postMessage({ pluginMessage: { type: 'resizeAndGroupSelected', width, height } }, '*');
+      });
     </script>
   </body>
 </html>
