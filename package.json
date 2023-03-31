@@ -1,0 +1,11 @@
+{
+  "name": "spritesheet-creator",
+  "version": "1.0.0",
+  "description": "tool to make spritesheet from a series of images along with css",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "riya09",
+  "license": "ISC"
+}
