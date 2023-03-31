@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Figma Plugin</title>
+  </head>
+  <body>
+    <h1>Selected items: <span id="count"></span></h1>
+    <script>
+      // Listen for messages from the plugin code
+      parent.postMessage({ pluginMessage: { type: 'countSelected' } }, '*');
+
+      // Update the count when a message is received
+      onmessage = (event) => {
+        if (event.data.pluginMessage.type === 'selectedCount') {
+          document.getElementById('count').textContent = event.data.pluginMessage.count;
+        }
+      };
+    </script>
+  </body>
+</html>

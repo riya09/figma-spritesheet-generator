@@ -1,0 +1,12 @@
+{
+  "name": "figma-spritesheet-creator",
+  "id": "1223669905069980730",
+  "api": "1.0.0",
+  "main": "code.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "editorType": [
+    "figma"
+  ],
+  "ui": "ui.html"
+}
