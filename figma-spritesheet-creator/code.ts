@@ -4,6 +4,7 @@ figma.ui.onmessage = async (msg) => {
   if (msg.type === 'resizeAndGroupSelected') {
     const width = parseInt(msg.width);
     const height = parseInt(msg.height);
+    const spacing = parseInt(msg.spacing);
     // Get all selected nodes and store them in an array
     const selection = figma.currentPage.selection;
     if (selection.length > 1) {
@@ -29,7 +30,6 @@ figma.ui.onmessage = async (msg) => {
       
       // Place the children of the group side by side without any gap
       const children = group.children;
-      const spacing = 0; // Set the spacing between the children to 0
       let x = 0; // Start with the x position of the first child
       for (const child of children) {
         child.x = x;
