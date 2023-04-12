@@ -5,6 +5,7 @@ figma.ui.onmessage = async (msg) => {
     const width = parseInt(msg.width);
     const height = parseInt(msg.height);
     const spacing = parseInt(msg.spacing);
+    const layout = msg.layout;
     // Get all selected nodes and store them in an array
     const selection = figma.currentPage.selection;
     if (selection.length > 1) {
@@ -30,11 +31,28 @@ figma.ui.onmessage = async (msg) => {
       
       // Place the children of the group side by side without any gap
       const children = group.children;
-      let x = 0; // Start with the x position of the first child
-      for (const child of children) {
-        child.x = x;
-        child.y = 0;
-        x += child.width + spacing;
+      if(children.length) {
+        let x = 0; // Start with the x position of the first child
+        let y = 0; // Start with the y position of the first child
+        const row = Math.ceil(Math.sqrt(children.length)) - 1
+        const elemWidth = children[0].width
+        const totalWidth = (elemWidth * row) + (spacing * row)
+        for (const child of children) {
+          child.x = x
+          child.y = y
+          if (layout === 'horizontal') {
+            x += child.width + spacing
+          } else if (layout === 'vertical') {
+            y += child.height + spacing
+          } else {
+            if (x >= totalWidth) {
+              x = 0
+              y += child.height + spacing
+            } else {
+              x += child.width + spacing
+            }
+          }
+        }
       }
       
       figma.viewport.scrollAndZoomIntoView([group]);

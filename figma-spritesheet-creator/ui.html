@@ -14,6 +14,13 @@
       <label for="spacing-input">Spacing:</label>
       <input type="number" id="spacing-input" name="spacing" required>
 
+      <label for="layout">Layout</label>
+      <select id="layout">
+        <option value="horizontal">Horizontal</option>
+        <option value="vertical">Vertical</option>
+        <option value="compact">Compact</option>
+      </select>
+
       <button type="submit">Resize and group selected items</button>
     </form>
     <script>
@@ -27,7 +34,8 @@
         const width = document.getElementById('width-input').value;
         const height = document.getElementById('height-input').value;
         const spacing = document.getElementById('spacing-input').value;
-        parent.postMessage({ pluginMessage: { type: 'resizeAndGroupSelected', width, height, spacing } }, '*');
+        const layout = document.getElementById('layout').value;
+        parent.postMessage({ pluginMessage: { type: 'resizeAndGroupSelected', width, height, spacing, layout } }, '*');
       });
     </script>
   </body>
