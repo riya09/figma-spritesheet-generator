@@ -6,6 +6,7 @@ figma.ui.onmessage = async (msg) => {
     const height = parseInt(msg.height);
     const spacing = parseInt(msg.spacing);
     const layout = msg.layout;
+    let cssCode = ''
     // Get all selected nodes and store them in an array
     const selection = figma.currentPage.selection;
     if (selection.length > 1) {
@@ -36,10 +37,16 @@ figma.ui.onmessage = async (msg) => {
         let y = 0; // Start with the y position of the first child
         const row = Math.ceil(Math.sqrt(children.length)) - 1
         const elemWidth = children[0].width
+        const elemHeight = children[0].height
         const totalWidth = (elemWidth * row) + (spacing * row)
+        const groupName = formatName(group.name)
+        cssCode += `.${groupName} {\n  background: url(${groupName}.png) no-repeat;\n}\n`;
+        cssCode += `.icon {\n  width: ${elemWidth}px;\n  height: ${elemHeight}px;\n}\n`;
         for (const child of children) {
           child.x = x
           child.y = y
+          const childName = formatName(child.name)
+          cssCode += `.${childName} {\n  background-position: ${x > 0 ? `-${x}` : 0} ${y > 0 ? `-${y}` : 0};\n}\n`;
           if (layout === 'horizontal') {
             x += child.width + spacing
           } else if (layout === 'vertical') {
@@ -59,3 +66,7 @@ figma.ui.onmessage = async (msg) => {
     }
   }
 };
+
+const formatName = (name) => {
+  return name.replace(/ /g, '_').toLowerCase();
+}
