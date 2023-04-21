@@ -63,6 +63,10 @@ figma.ui.onmessage = async (msg) => {
       }
       
       figma.viewport.scrollAndZoomIntoView([group]);
+      figma.ui.postMessage({
+        type: 'generate-css-code',
+        message: cssCode,
+      });
     }
   }
 };
