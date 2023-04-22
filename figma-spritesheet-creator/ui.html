@@ -4,6 +4,7 @@
     <title>My Figma Plugin</title>
   </head>
   <body>
+    <button id="reset-btn" style="display: none">Generate Again</button>
     <form>
       <label for="width-input">Width:</label>
       <input type="number" id="width-input" name="width" required>
@@ -30,6 +31,8 @@
 
       // Send a message to the plugin code when the form is submitted
       const form = document.querySelector('form');
+      const resetBtn = document.querySelector('#reset-btn')
+      const codeContainer = document.getElementById('css-code')
       form.addEventListener('submit', (event) => {
         event.preventDefault();
         const width = document.getElementById('width-input').value;
@@ -40,10 +43,16 @@
       });
       window.addEventListener('message', (event) => {
         if (event.data.pluginMessage.type === 'generate-css-code') {
-          const codeContainer = document.getElementById('css-code')
+          form.style.display = 'none'
           codeContainer.textContent = event.data.pluginMessage.message
+          resetBtn.style.display = 'block'
         }
       });
+      resetBtn.addEventListener('click', () => {
+        codeContainer.textContent = ''
+        form.style.display = 'block'
+        resetBtn.style.display = 'none'
+      }) 
     </script>
   </body>
 </html>
