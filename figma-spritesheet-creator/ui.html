@@ -2,6 +2,54 @@
 <html>
   <head>
     <title>My Figma Plugin</title>
+    <style>
+      body {
+        background-color: #262628;
+        font-family: Helvetica, sans-serif;
+        font-size: 12px;
+      }
+      .input-wrapper {
+        margin: 10px 5px;
+        display: flex;
+        align-items: center;
+      }
+      label {
+        margin-right: 5px;
+        color: rgba(255, 255, 255, .7);
+        width: 60px;
+      }
+      p {
+        color: rgba(255, 255, 255, .7);
+        text-align: center;
+      }
+      input, select {
+        outline: none;
+        border: 1px solid #1e1e1e;
+        background-color: #383535;
+        color: #fff;
+        border-radius: 4px;
+        padding: 5px;
+        width: 100px;
+      }
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button
+      {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input[type=number]:focus {
+        border-color: #0c8ce9;
+      }
+      #generate-btn {
+        border: 0;
+        background-color: #0c8ce9;
+        border-radius: 5px;
+        padding: 10px;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <button id="reset-btn" style="display: none">Generate Again</button>
