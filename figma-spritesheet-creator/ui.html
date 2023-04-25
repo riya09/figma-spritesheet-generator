@@ -15,11 +15,11 @@
       }
       label {
         margin-right: 5px;
-        color: rgba(255, 255, 255, .7);
+        color: #ffffffb3;
         width: 60px;
       }
       p {
-        color: rgba(255, 255, 255, .7);
+        color: #ffffffb3;
         text-align: center;
       }
       input, select {
@@ -40,7 +40,7 @@
       input[type=number]:focus {
         border-color: #0c8ce9;
       }
-      #generate-btn {
+      #generate-btn, #reset-btn {
         border: 0;
         background-color: #0c8ce9;
         border-radius: 5px;
@@ -49,10 +49,15 @@
         font-weight: 600;
         cursor: pointer;
       }
+      #css-code {
+        background-color: #383838;
+        color: #ffffffb3;
+        font-weight: 500;
+        font-family: monospace;
+      }
     </style>
   </head>
   <body>
-    <button id="reset-btn" style="display: none">Generate Again</button>
     <form>
       <div>
         <p>Select elements to add in sprite-sheet</p>
@@ -81,7 +86,11 @@
 
       <button type="submit" id="generate-btn">Generate Sprite Sheet</button>
     </form>
-    <pre id="css-code"></pre>
+    <button id="reset-btn" style="display: none">Generate Again</button>
+    <div class="code-container">
+      <button id="copy-btn">Copy</button>
+      <pre id="css-code"></pre>
+    </div>
     <script>
       // Listen for messages from the plugin code
       parent.postMessage({ pluginMessage: { type: 'loaded' } }, '*');
