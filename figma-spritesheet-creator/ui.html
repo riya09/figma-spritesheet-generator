@@ -110,12 +110,12 @@
       window.addEventListener('message', (event) => {
         if (event.data.pluginMessage.type === 'generate-css-code') {
           form.style.display = 'none'
-          codeContainer.textContent = event.data.pluginMessage.message
+          codeContainer.innerHTML = event.data.pluginMessage.message
           resetBtn.style.display = 'block'
         }
       });
       resetBtn.addEventListener('click', () => {
-        codeContainer.textContent = ''
+        codeContainer.innerHTML = ''
         form.style.display = 'block'
         resetBtn.style.display = 'none'
       }) 

@@ -40,13 +40,24 @@ figma.ui.onmessage = async (msg) => {
         const elemHeight = children[0].height
         const totalWidth = (elemWidth * row) + (spacing * row)
         const groupName = formatName(group.name)
-        cssCode += `.${groupName} {\n  background: url(${groupName}.png) no-repeat;\n}\n`;
-        cssCode += `.icon {\n  width: ${elemWidth}px;\n  height: ${elemHeight}px;\n}\n`;
+        cssCode += generateCssCode({
+          className: `${groupName}`,
+          attrs: {
+            background: `background: url(${groupName}.png) no-repeat`,
+          },
+        });
         for (const child of children) {
           child.x = x
           child.y = y
           const childName = formatName(child.name)
-          cssCode += `.${childName} {\n  background-position: ${x > 0 ? `-${x}` : 0} ${y > 0 ? `-${y}` : 0};\n}\n`;
+          cssCode += generateCssCode({
+            className: `${childName}`,
+            attrs: {
+              'background-position': `${x > 0 ? `-${x}` : 0} ${y > 0 ? `-${y}` : 0}`,
+              width: `${elemWidth}px`,
+              height: `${elemHeight}px`,
+            },
+          });
           if (layout === 'horizontal') {
             x += child.width + spacing
           } else if (layout === 'vertical') {
@@ -73,4 +84,22 @@ figma.ui.onmessage = async (msg) => {
 
 const formatName = (name) => {
   return name.replace(/ /g, '_').toLowerCase();
+}
+
+interface Element {
+  className: string;
+  attrs: {
+    [key: string]: string;
+  };
+}
+
+const generateCssCode = (elem: Element): string => {
+  const className = elem.className
+  const numOfProperties = Object.keys(elem).length;
+  let code = `<span class="selector-class">.${className}</span> {\n`
+  Object.entries(elem.attrs).forEach(([key, value], index) => {
+    code += `<span class="attribute-name">${key}</span>: <span class="attribute-value">${value}</span>;\n`
+  });
+  code += `}\n`
+  return code
 }
