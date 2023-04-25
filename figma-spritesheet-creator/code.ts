@@ -82,7 +82,7 @@ figma.ui.onmessage = async (msg) => {
   }
 };
 
-const formatName = (name) => {
+const formatName = (name: string): string => {
   return name.replace(/ /g, '_').toLowerCase();
 }
 
