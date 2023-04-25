@@ -50,10 +50,28 @@
         cursor: pointer;
       }
       #css-code {
+        display: block;
+      }
+      #css-code, #css-code span {
         background-color: #383838;
         color: #ffffffb3;
         font-weight: 500;
         font-family: monospace;
+        word-wrap: normal;
+        background: none;
+        text-align: left;
+        white-space: pre;
+        word-break: normal;
+        word-spacing: normal;
+      }
+      #css-code span.selector-class {
+        color: #7cc4f8;
+      }
+      #css-code span.attribute-name {
+        padding-left: 15px;
+      }
+      #css-code span.attribute-value {
+        color: #fc9ce0;
       }
     </style>
   </head>
