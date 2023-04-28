@@ -95,7 +95,6 @@ interface Element {
 
 const generateCssCode = (elem: Element): string => {
   const className = elem.className
-  const numOfProperties = Object.keys(elem).length;
   let code = `<span class="selector-class">.${className}</span> {\n`
   Object.entries(elem.attrs).forEach(([key, value], index) => {
     code += `<span class="attribute-name">${key}</span>: <span class="attribute-value">${value}</span>;\n`
