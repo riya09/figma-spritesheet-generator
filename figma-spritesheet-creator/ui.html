@@ -177,43 +177,43 @@
     </div>
     <script>
       // Listen for messages from the plugin code
-      parent.postMessage({ pluginMessage: { type: 'loaded' } }, '*');
+      parent.postMessage({ pluginMessage: { type: 'loaded' } }, '*')
 
       // Send a message to the plugin code when the form is submitted
-      const form = document.querySelector('form');
+      const form = document.querySelector('form')
       const resetBtn = document.querySelector('#reset-btn')
       const copyBtn = document.querySelector('#copy-btn')
       const codeContainer = document.querySelector('.code-container')
       const cssCode = document.getElementById('css-code')
       form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const width = document.getElementById('width-input').value;
-        const height = document.getElementById('height-input').value;
-        const spacing = document.getElementById('spacing-input').value;
-        const layout = document.getElementById('layout').value;
-        parent.postMessage({ pluginMessage: { type: 'generate-sprite-sheet', width, height, spacing, layout } }, '*');
-      });
+        event.preventDefault()
+        const width = document.getElementById('width-input').value
+        const height = document.getElementById('height-input').value
+        const spacing = document.getElementById('spacing-input').value
+        const layout = document.getElementById('layout').value
+        parent.postMessage({ pluginMessage: { type: 'generate-sprite-sheet', width, height, spacing, layout } }, '*')
+      })
       window.addEventListener('message', (event) => {
         if (event.data.pluginMessage.type === 'generate-css-code') {
           form.style.display = 'none'
           codeContainer.style.display = 'block'
           cssCode.innerHTML = event.data.pluginMessage.message
         }
-      });
+      })
       resetBtn.addEventListener('click', () => {
         cssCode.innerHTML = ''
         form.style.display = 'block'
         codeContainer.style.display = 'none'
       })
       copyBtn.addEventListener('click', () => {
-        const range = document.createRange();
-        range.selectNodeContents(cssCode);
-        const selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
+        const range = document.createRange()
+        range.selectNodeContents(cssCode)
+        const selection = window.getSelection()
+        selection.removeAllRanges()
+        selection.addRange(range)
 
         // Copy the selected text to the clipboard
-        document.execCommand('copy');
+        document.execCommand('copy')
         // toggle icon to show check icon and hide copy icon
         document.querySelector('.copy-icon').style.display = 'none'
         document.querySelector('.check-icon').style.display = 'inline'
@@ -224,7 +224,7 @@
         }, 2000)
 
         // Deselect the text
-        selection.removeAllRanges();
+        selection.removeAllRanges()
       })
     </script>
   </body>
