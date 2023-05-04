@@ -30,8 +30,8 @@ figma.ui.onmessage = async (msg) => {
       }
       const children = group.children;
       if(children.length) {
-        let x = spacing; // Start with the x position of the first child
-        let y = spacing; // Start with the y position of the first child
+        let x = 0; // Start with the x position of the first child
+        let y = 0; // Start with the y position of the first child
         const row = Math.ceil(Math.sqrt(children.length)) - 1 // for compact view
         const elemWidth = children[0].width
         const elemHeight = children[0].height
