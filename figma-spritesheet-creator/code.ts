@@ -10,18 +10,17 @@ figma.ui.onmessage = async (msg) => {
     // Get all selected nodes and store them in an array
     const selection = figma.currentPage.selection;
     if (selection.length > 1) {
-      // Group the selected elements
       // Create a new page and set it as the current page
       const newPage = figma.createPage();
       figma.currentPage = newPage;
-
+      // clone all selected elements to new page
       const cloneNodes = []
       for (const node of selection) {
         const cloneNode = node.clone()
         cloneNodes.push(cloneNode)
         newPage.appendChild(cloneNode);
       }
-
+      // group all the clonedNodes and add to selection
       const group = figma.group(cloneNodes, newPage);
       newPage.selection = [group];
 
@@ -29,13 +28,11 @@ figma.ui.onmessage = async (msg) => {
       for (const node of group.children) {
         node.resize(width, height);
       }
-      
-      // Place the children of the group side by side without any gap
       const children = group.children;
       if(children.length) {
-        let x = 0; // Start with the x position of the first child
-        let y = 0; // Start with the y position of the first child
-        const row = Math.ceil(Math.sqrt(children.length)) - 1
+        let x = spacing; // Start with the x position of the first child
+        let y = spacing; // Start with the y position of the first child
+        const row = Math.ceil(Math.sqrt(children.length)) - 1 // for compact view
         const elemWidth = children[0].width
         const elemHeight = children[0].height
         const totalWidth = (elemWidth * row) + (spacing * row)
@@ -74,6 +71,7 @@ figma.ui.onmessage = async (msg) => {
       }
       
       figma.viewport.scrollAndZoomIntoView([group]);
+      // send message to ui to show generated code
       figma.ui.postMessage({
         type: 'generate-css-code',
         message: cssCode,
