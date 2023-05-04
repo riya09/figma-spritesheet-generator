@@ -191,7 +191,7 @@
         const height = document.getElementById('height-input').value;
         const spacing = document.getElementById('spacing-input').value;
         const layout = document.getElementById('layout').value;
-        parent.postMessage({ pluginMessage: { type: 'resizeAndGroupSelected', width, height, spacing, layout } }, '*');
+        parent.postMessage({ pluginMessage: { type: 'generate-sprite-sheet', width, height, spacing, layout } }, '*');
       });
       window.addEventListener('message', (event) => {
         if (event.data.pluginMessage.type === 'generate-css-code') {

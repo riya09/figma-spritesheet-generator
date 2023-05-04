@@ -1,7 +1,7 @@
 figma.showUI(__html__, { width: 300, height: 300 });
 
 figma.ui.onmessage = async (msg) => {
-  if (msg.type === 'resizeAndGroupSelected') {
+  if (msg.type === 'generate-sprite-sheet') {
     const width = parseInt(msg.width);
     const height = parseInt(msg.height);
     const spacing = parseInt(msg.spacing);
