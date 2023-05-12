@@ -1,13 +1,13 @@
 {
   "name": "figma-spritesheet-creator",
   "version": "1.0.0",
-  "description": "Your Figma Plugin",
+  "description": "plugin for generating spritesheet and corresponding CSS code",
   "main": "code.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "watch": "npm run build -- --watch"
   },
-  "author": "",
+  "author": "riya09",
   "license": "",
   "devDependencies": {
     "@figma/plugin-typings": "*",

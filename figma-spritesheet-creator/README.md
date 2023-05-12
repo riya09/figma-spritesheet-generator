@@ -1,40 +1,11 @@
-Below are the steps to get your plugin running. You can also find instructions at:
+# figma-spritesheet-generator
 
-  https://www.figma.com/plugin-docs/plugin-quickstart/
+With this plugin you can create a spritesheet and corresponding CSS code by following these simple steps:
 
-This plugin template uses Typescript and NPM, two standard tools in creating JavaScript applications.
+1. Begin by selecting the specific layers you wish to include in your spritesheet. These layers can consist of individual elements, icons, or any other visual components that you want to combine into a single image.
 
-First, download Node.js which comes with NPM. This will allow you to install TypeScript and other
-libraries. You can find the download link here:
+2. For each element within the spritesheet, specify the desired height and width. This ensures that all elements are uniform in size and neatly arranged within the spritesheet.
 
-  https://nodejs.org/en/download/
+3. Customize the spacing and layout of the spritesheet according to your preference. You can adjust the spacing between individual elements to create a visually appealing arrangement. Additionally, you have the flexibility to choose the overall layout, such as a grid pattern or a linear arrangement.
 
-Next, install TypeScript using the command:
-
-  npm install -g typescript
-
-Finally, in the directory of your plugin, get the latest type definitions for the plugin API by running:
-
-  npm install --save-dev @figma/plugin-typings
-
-If you are familiar with JavaScript, TypeScript will look very familiar. In fact, valid JavaScript code
-is already valid Typescript code.
-
-TypeScript adds type annotations to variables. This allows code editors such as Visual Studio Code
-to provide information about the Figma API while you are writing code, as well as help catch bugs
-you previously didn't notice.
-
-For more information, visit https://www.typescriptlang.org/
-
-Using TypeScript requires a compiler to convert TypeScript (code.ts) into JavaScript (code.js)
-for the browser to run.
-
-We recommend writing TypeScript code using Visual Studio code:
-
-1. Download Visual Studio Code if you haven't already: https://code.visualstudio.com/.
-2. Open this directory in Visual Studio Code.
-3. Compile TypeScript to JavaScript: Run the "Terminal > Run Build Task..." menu item,
-    then select "npm: watch". You will have to do this again every time
-    you reopen Visual Studio Code.
-
-That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+4. Once you have finalized the settings, simply click the "Generate" button. The plugin will then automatically generate the spritesheet image and the corresponding CSS code required to utilize it in your web development projects.
