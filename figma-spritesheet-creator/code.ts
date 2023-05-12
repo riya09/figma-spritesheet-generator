@@ -1,4 +1,4 @@
-figma.showUI(__html__, { width: 300, height: 300 });
+figma.showUI(__html__, { width: 300, height: 360 });
 
 figma.ui.onmessage = async (msg) => {
   if (msg.type === 'generate-sprite-sheet') {
