@@ -40,9 +40,12 @@ figma.ui.onmessage = async (msg) => {
         cssCode += generateCssCode({
           className: `${groupName}`,
           attrs: {
-            background: `background: url(${groupName}.png) no-repeat`,
+            background: `url(${groupName}.png) no-repeat`,
+            width: `${elemWidth}px`,
+            height: `${elemHeight}px`,
+            display: 'inline-block'
           },
-        })
+        });
         for (const child of children) {
           child.x = x
           child.y = y
@@ -50,11 +53,9 @@ figma.ui.onmessage = async (msg) => {
           cssCode += generateCssCode({
             className: `${childName}`,
             attrs: {
-              'background-position': `${x > 0 ? `-${x}` : 0} ${y > 0 ? `-${y}` : 0}`,
-              width: `${elemWidth}px`,
-              height: `${elemHeight}px`,
+              'background-position': `${x > 0 ? `-${x}` : 0}${x !== 0 ? 'px' : ''} ${y > 0 ? `-${y}` : 0}${y !== 0 ? 'px' : ''}`,
             },
-          })
+          });
           if (layout === 'horizontal') {
             x += child.width + spacing
           } else if (layout === 'vertical') {
